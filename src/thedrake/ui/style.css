@@ -1,0 +1,26 @@
+.root{
+    -fx-background-image: url("../../assets/background.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+    -fx-min-width: 200px;
+    -fx-font-family: "Copperplate Gothic Bold";
+}
+
+#textTitle{
+    -fx-font-size: 70;
+    -fx-padding: 0 0 40 0;
+}
+
+#vbox{
+    -fx-spacing: 12;
+    -fx-padding: 20 0 30 0;
+}
+
+.button {
+    -fx-background-color: red;
+    -fx-font-size: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 7, 7);
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+}

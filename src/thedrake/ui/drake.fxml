@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="thedrake.ui.Controller">
+   <children>
+      <VBox fx:id="vBox">
+         <children>
+            <Label fx:id="textTitle" text="The Drake" />
+            <Button fx:id="twoPlayers" mnemonicParsing="false" onAction="#onTwoPlayers" text="Two players" />
+            <Button fx:id="onePlayer" mnemonicParsing="false" text="Player vs. Computer" />
+            <Button fx:id="online" mnemonicParsing="false" text="Online game" />
+            <Button fx:id="end" mnemonicParsing="false" onAction="#onEnd" text="End" />
+         </children>
+      </VBox>
+   </children>
+</StackPane>
