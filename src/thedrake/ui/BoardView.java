@@ -11,17 +11,17 @@ import static java.lang.String.valueOf;
 
 public class BoardView extends GridPane implements TileViewContext {
 
-    private GameState gameState;            // Stav hry s Tiles
+    private GameState gameState;                                            // Stav hry s Tiles
 
     private ValidMoves validMoves;
 
     private TileView selected;
 
-    private HViewSelected hViewSelected;            // The Parent HBox
+    private final PackageViewContext packageViewContext;                    // The Parent HBox
 
-    public BoardView(GameState gameState, HViewSelected hViewSelected) {
+    public BoardView(GameState gameState, PackageViewContext packageViewContext) {
         this.gameState = gameState;
-        this.hViewSelected = hViewSelected;
+        this.packageViewContext = packageViewContext;
         this.validMoves = new ValidMoves(gameState);
 
         PositionFactory positionFactory = gameState.board().positionFactory();          // Ziskani pozic
@@ -43,12 +43,12 @@ public class BoardView extends GridPane implements TileViewContext {
     }
 
     @Override
-    public void tileViewSelected(TileView tileView) {           // Change of selected Tile
+    public void tileViewSelected(TileView tileView) {                   // Change of selected Tile
         if (selected != null && selected != tileView)
             selected.unselect();
 
         selected = tileView;
-        hViewSelected.cardPackageViewSelected(this);
+        packageViewContext.cardPackageViewSelected(this);
 
         clearMoves();
         showMoves(validMoves.boardMoves(tileView.position()));
@@ -69,13 +69,13 @@ public class BoardView extends GridPane implements TileViewContext {
         updateTiles();
 
         if(willCapture)                                                             // Message to HBox to update Captured
-            hViewSelected.newCapture(this, gameState.sideOnTurn());
-        if(gameState.getResult() != GameResult.IN_PLAY)
-            hViewSelected.gameOver(gameState);
+            packageViewContext.newCapture(this, gameState.sideOnTurn());
+        if(gameState.getResult() != GameResult.IN_PLAY)                             // Message to StackPane in StageConfig
+            packageViewContext.gameOver(gameState);
         if(gameState.sideOnTurn() == PlayingSide.ORANGE)                            // Message to HBox to update Package
-            hViewSelected.newPackage(this, PlayingSide.BLUE);
+            packageViewContext.newPackage(this, PlayingSide.BLUE);
         else
-            hViewSelected.newPackage(this, PlayingSide.ORANGE);
+            packageViewContext.newPackage(this, PlayingSide.ORANGE);
     }
 
     private void updateTiles() {                     // Prekresleni

@@ -3,17 +3,17 @@ package thedrake.ui;
 import javafx.scene.layout.HBox;
 import thedrake.*;
 
-public class HView extends HBox implements HViewSelected {               // This class enables communication between packages and board
+public class HView extends HBox implements PackageViewContext {               // This class enables communication between packages and board
 
     private CapturedView orangeByCaptured;
     private CapturedView blueByCaptured;
     private PackageView orangePack;
     private PackageView bluePack;
-    private BoardView boardView;
-    private GameStatus gameStatus;
+    private final BoardView boardView;
+    private final HViewContext HViewContext;
 
-    public HView(GameState gameState, GameStatus gameStatus) {
-        this.gameStatus = gameStatus;
+    public HView(GameState gameState, HViewContext HViewContext) {
+        this.HViewContext = HViewContext;
         this.boardView = new BoardView(gameState, this);
         this.orangePack = new PackageView(boardView, PlayingSide.ORANGE, this);
         this.bluePack = new PackageView(boardView, PlayingSide.BLUE, this);
@@ -63,7 +63,7 @@ public class HView extends HBox implements HViewSelected {               // This
     }
 
     @Override
-    public void newCapture(BoardView boardView, PlayingSide playingSide) {
+    public void newCapture(BoardView boardView, PlayingSide playingSide) {                  // Generate new visualization of Captured troops
         if(playingSide == PlayingSide.BLUE)
             this.orangeByCaptured = new CapturedView(boardView, PlayingSide.ORANGE);
         else
@@ -73,7 +73,7 @@ public class HView extends HBox implements HViewSelected {               // This
 
     @Override
     public void gameOver(GameState gameState) {
-        gameStatus.gameOver(gameState);
+        HViewContext.gameOver(gameState);
     }
 
     private void update() {

@@ -12,10 +12,10 @@ public class PackageView extends AnchorPane implements CardViewSelected{
 
     private CardView selected;
 
-    private HViewSelected hViewSelected;
+    private final PackageViewContext packageViewContext;
 
-    public PackageView (BoardView boardView, PlayingSide playingSide, HViewSelected hViewSelected) {                 // Makes package out of cards on stack
-        this.hViewSelected = hViewSelected;
+    public PackageView (BoardView boardView, PlayingSide playingSide, PackageViewContext packageViewContext) {                 // Makes package out of cards on stack
+        this.packageViewContext = packageViewContext;
         this.playingSide = playingSide;
         List<Troop> troops = boardView.getGameState().army(playingSide).stack();
         Collections.reverse(troops);
@@ -46,8 +46,8 @@ public class PackageView extends AnchorPane implements CardViewSelected{
 
         selected = cardView;
 
-        hViewSelected.cardPackageViewSelected(this);        // Message to HBox to unselect other package
-        hViewSelected.showMovesFromStack(this);
+        packageViewContext.cardPackageViewSelected(this);        // Message to HBox to unselect other package
+        packageViewContext.showMovesFromStack(this);
     }
 
     public void unselect(){

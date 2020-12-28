@@ -3,7 +3,7 @@ package thedrake.ui;
 import thedrake.GameState;
 import thedrake.PlayingSide;
 
-public interface HViewSelected {
+public interface PackageViewContext {
 
     void cardPackageViewSelected(PackageView packageView);
     void cardPackageViewSelected(BoardView boardView);

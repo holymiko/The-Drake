@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import thedrake.*;
 
-public class StageConfig implements GameStatus{
+public class StageConfig implements HViewContext {
 
     private Stage stage;
     private StackPane stackScene;
