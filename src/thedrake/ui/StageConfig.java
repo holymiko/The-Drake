@@ -23,6 +23,8 @@ public class StageConfig implements HViewContext {
         scene.getStylesheets().add("/thedrake/ui/style.css");
         primaryStage.setScene(scene);
         primaryStage.setTitle("Drake");
+//        primaryStage.setWidth(660);
+//        primaryStage.setHeight(450);
         primaryStage.setMinWidth(440);
         primaryStage.setMinHeight(350);
 //        primaryStage.show();
@@ -36,6 +38,7 @@ public class StageConfig implements HViewContext {
 
     public Stage game(Stage primaryStage){
         StackPane stackScene = new StackPane();
+
         VBox vBox = new VBox();
         vBox.prefHeight(100);                 // To keep packs next to board
 
@@ -49,16 +52,17 @@ public class StageConfig implements HViewContext {
         stackScene.getChildren().add(vBox);
         this.stackScene = stackScene;
 
-        final double oldWidth = primaryStage.getWidth();
-        final double oldHeight = primaryStage.getHeight();
+//        final double oldWidth = primaryStage.getWidth();
+//        final double oldHeight = primaryStage.getHeight();
         final Scene scene = new Scene(stackScene);
         scene.getStylesheets().add("/thedrake/ui/style.css");
 //        primaryStage.hide();
         primaryStage.setScene(scene);
-        primaryStage.setWidth(oldWidth);
-        primaryStage.setHeight(oldHeight);
+
+//        primaryStage.setWidth(oldWidth);
+//        primaryStage.setHeight(oldHeight);
 //        primaryStage.show();
-        primaryStage.setMinWidth(830);
+        primaryStage.setMinWidth(1000);
         primaryStage.setMinHeight(480);
 
         this.stage = primaryStage;
@@ -70,7 +74,7 @@ public class StageConfig implements HViewContext {
         PositionFactory positionFactory = board.positionFactory();
         board = board.withTiles(new Board.TileAt(positionFactory.pos(1, 1), BoardTile.MOUNTAIN));
         return new StandardDrakeSetup().startState(board)
-                .placeFromStack(positionFactory.pos(0, 0))
+              /*  .placeFromStack(positionFactory.pos(0, 0))
                 .placeFromStack(positionFactory.pos(3, 3))
                 .placeFromStack(positionFactory.pos(0, 1))
                 .placeFromStack(positionFactory.pos(3, 2))
@@ -80,7 +84,7 @@ public class StageConfig implements HViewContext {
                 .placeFromStack(positionFactory.pos(0, 2))
                 .placeFromStack(positionFactory.pos(3, 1))
                 .placeFromStack(positionFactory.pos(2, 0))
-                .placeFromStack(positionFactory.pos(1, 3))/**/;
+                .placeFromStack(positionFactory.pos(1, 3))*/;
     }
 
 
